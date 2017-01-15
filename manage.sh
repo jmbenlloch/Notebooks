@@ -15,15 +15,16 @@ function python_version_env {
 
 
 function nb_env {
-    echo ICTDIR is set to $ICTDIR
-    echo ICDIR is set to $ICDIR
+	if [ -z $ICTDIR ]; then
+		echo "ERROR: $ICTDIR is not set, run your IC manage.sh first"
+	else
+    	export NBDIR=`pwd`
+	    echo NBDIR set to $NBDIR
     
-    export NBDIR=`pwd`
-    echo NBDIR set to $NBDIR
-    
-    echo setting PYTHONPATH
-    export PYTHONPATH=$ICTDIR
-    echo PYTHONPATH is set to $PYTHONPATH
+    	echo setting PYTHONPATH
+	    export PYTHONPATH=$ICTDIR
+	    echo PYTHONPATH is set to $PYTHONPATH
+	fi
 }
 
 
