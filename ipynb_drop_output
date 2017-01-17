@@ -11,14 +11,8 @@ def strip_output_from_cell(cell):
         cell["outputs"] = []
     if "execution_count" in cell:
         cell["execution_count"] = None
-
-print("in scripts NB")
-
 nb = sys.stdin.read()
-
 json_in = json.loads(nb)
-
-print('stripping')
 
 for cell in json_in["cells"]:
     strip_output_from_cell(cell)
