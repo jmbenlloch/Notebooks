@@ -6,6 +6,11 @@ PYTHON_VERSION=$2
 echo ${PYTHON_VERSION}
 
 
+function setup_git {
+    git config --add include.path `pwd`/.gitconfig
+}
+
+
 function python_version_env {
     # Activate the relevant conda env
     source activate IC${PYTHON_VERSION}
@@ -35,6 +40,7 @@ function notebook_env {
 case $COMMAND in
     python_version_env)      python_version_env ;;
     notebook_env)            notebook_env ;;
+    setup_git)               setup_git ;;
     
     *) echo Unrecognized command: ${COMMAND}
        echo
@@ -42,5 +48,6 @@ case $COMMAND in
        echo
        echo source $0 python_version_env X.Y
        echo source $0 notebook_env
+       echo source $0 setup_git
        ;;
 esac
